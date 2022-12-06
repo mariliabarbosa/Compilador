@@ -14,4 +14,4 @@ module.exports = function traverse(ast, visitors) {
       nodes.forEach(node => walkNode(node, parent));
     }
     walkNode(ast, null);
-  }
+}

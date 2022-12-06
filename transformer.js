@@ -9,29 +9,29 @@ module.exports = function transformer(originalAST) {
 
     traverse(originalAST, {
         NumberLiteral(node) {
-        position.push({
-            type: 'NumericLiteral',
-            value: node.value
-        });
+            position.push({
+                type: 'NumericLiteral',
+                value: node.value
+            });
         },
         CallExpression(node, parent) {
-        let expression = {
-            type: 'CallExpression',
-            callee: {
-            type: 'Identifier',
-            name: node.name
-            },
-            arguments: []
-        };
-        const prevPosition = position;
-        position = expression.arguments;
-        if (parent.type !== 'CallExpression') {
-            expression = {
-            type: 'ExpressionStatement',
-            expression
+            let expression = {
+                type: 'CallExpression',
+                callee: {
+                    type: 'Identifier',
+                    name: node.name
+                },
+                arguments: []
             };
-        }
-        prevPosition.push(expression);
+            const prevPosition = position;
+            position = expression.arguments;
+            if (parent.type !== 'CallExpression') {
+                expression = {
+                    type: 'ExpressionStatement',
+                    expression
+                };
+            }
+            prevPosition.push(expression);
         }
     });
 

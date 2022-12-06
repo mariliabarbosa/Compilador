@@ -12,5 +12,5 @@ module.exports = function compiler(input) {
     const jsAST = transformer(elixirAST);
     //Geração de código
     const jsCode = generateCode(jsAST);
-    return jsAST;
+    return jsCode;
 }
